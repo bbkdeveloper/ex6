@@ -11,19 +11,25 @@
 <script type="text/javascript">
 	$(function() {
 			
+		var name=1;
 		var count=0;
 		var data='';
 		
 		$("#add").click(function() {
-			count++;
-			if(count<6){
-				data = '<p><input type="file" name="f1"><span class="sp">X</span> </p>';
+			if(count<5){
+				count++;
+				name++;
+				data = '<p class="test"><input type="file" name="f""'+name+'"><span class="del">X</span> </p>';
 				$("#file").append(data);
 			}else{
 				alert("5개가 최대");
 			}
 		});
-			
+		
+		$("#file").on("click", ".del", function(){
+			count--;
+			$(this).parent().remove();
+		});
 		
 		
 	});

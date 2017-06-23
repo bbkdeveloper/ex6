@@ -19,9 +19,20 @@
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
+		<beans:property name="order" value="1"/>
+	</beans:bean>
+	
+	<beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<beans:property name="order" value="0"/>
+	</beans:bean>
+		<!-- order의 value를 0으로줘서 먼저 거치고 아니면 value가 1인곳을 실행 -->
+
+	
+	<beans:bean class="com.choa.file.Download" id="download">
 	</beans:bean>
 	
 	<context:component-scan base-package="com.choa.ex6" />
+	<context:component-scan base-package="com.choa.notice"/>
 	
 	
 	
