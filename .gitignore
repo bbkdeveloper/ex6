@@ -7,3 +7,4 @@ target/m2e-wtp/web-resources/.gitignore
 .settings/org.eclipse.m2e.core.prefs
 .settings/org.springframework.ide.eclipse.core.prefs
 .settings/org.springframework.ide.eclipse.beans.core.prefs
+/target/

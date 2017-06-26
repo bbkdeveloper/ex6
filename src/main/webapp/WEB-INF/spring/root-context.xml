@@ -6,14 +6,21 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	<!-- 외부에서 properties 파일을 통해 받아오기  -->
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer" id="propertyPlaceholderConfigurer">
+		<property name="locations">
+			<value>classpath:myBatis/myBatis.properties</value>
+		</property>
+	</bean>	
 		
 	
 	<!-- 1. dataSource -->
 	<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
-		<property name="username" value="user03"/>
-		<property name="password" value="user03"/>
-		<property name="url" value="jdbc:oracle:thin:@192.168.20.51:1521:xe"/>
-		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="username" value="${jdbc.user}"/>
+		<property name="password" value="${jdbc.pw}"/>
+		<property name="url" value="${jdbc.url}"/>
+		<property name="driverClassName" value="${jdbc.driver}"/>
 	</bean>
 
 	
@@ -21,6 +28,7 @@
 	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
 		<property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml"/>
+		<property name="configLocation" value="classpath:myBatis/mybatis-config.xml"></property>
 	</bean>
 	
 	

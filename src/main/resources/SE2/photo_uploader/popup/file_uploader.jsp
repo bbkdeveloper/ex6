@@ -33,12 +33,12 @@ if (ServletFileUpload.isMultipartContent(request)){
             if(item.getSize() > 0) {
                 String ext = item.getName().substring(item.getName().lastIndexOf(".")+1);
                 //파일 기본경로
-                String defaultPath = request.getServletContext().getRealPath("/");
+               // String defaultPath = request.getServletContext().getRealPath("/");
                 //파일 기본경로 _ 상세경로
-                String path = defaultPath + "upload" + File.separator; //file.separator = /를 의미 운영체제마다 /가 달라서,, 현재운영체제의 /사용해라 라는 뜻
-                System.out.println("파일상세경로 :"+path);
+                //String path = defaultPath + "upload" + File.separator; //file.separator = /를 의미 운영체제마다 /가 달라서,, 현재운영체제의 /사용해라 라는 뜻
+                //System.out.println("파일상세경로 :"+path);
                  
-                File file = new File(path);
+                File file = new File("");
                  
                 //디렉토리 존재하지 않을경우 디렉토리 생성
                 if(!file.exists()) {
@@ -48,7 +48,7 @@ if (ServletFileUpload.isMultipartContent(request)){
                 String realname = UUID.randomUUID().toString() + "." + ext;
                 ///////////////// 서버에 파일쓰기 ///////////////// 
                 InputStream is = item.getInputStream();
-                OutputStream os=new FileOutputStream(path + realname);
+                OutputStream os=new FileOutputStream("" + realname);
                 int numRead;
                 byte b[] = new byte[(int)item.getSize()];
                 while((numRead = is.read(b,0,b.length)) != -1){

@@ -29,7 +29,7 @@
 		(select * from notice order by num desc) N)
 		where R between #{startRow} and #{lastRow} -->
 		
-  	<select id="list" resultType="com.choa.notice.NoticeDTO" parameterType="com.choa.util.ListInfo">
+  	<select id="list" resultType="NoticeDTO" parameterType="com.choa.util.ListInfo">
 		select * from 
 		(select rownum R, N.* from
 		(select * from notice 
@@ -44,21 +44,21 @@
   <!-- 불필요한 ,(콤마)를 삭제해주는 <set>태그  -->
   
   	<!-- NoticeView -->
-  	<select id="view" resultType="com.choa.notice.NoticeDTO" parameterType="java.lang.Integer">
+  	<select id="view" resultType="NoticeDTO" parameterType="java.lang.Integer">
   		select * from notice where num=#{num}
   	</select>
   	
   	<!-- NoticeInsert -->
-  	<insert id="write" parameterType="com.choa.notice.NoticeDTO">
+  	<insert id="write" parameterType="NoticeDTO">
   		insert into notice (num, writer, title, contents, reg_date, hit) 
   		values (notice_seq.nextval, #{writer}, #{title}, #{contents}, sysdate, 0)
   	</insert>
   	
-  	<update id="update" parameterType="com.choa.notice.NoticeDTO">
+  	<update id="update" parameterType="NoticeDTO">
   		update notice set title=#{title}, contents=#{contents} where num=#{num}
   	</update>
   	
-  	<delete id="delete" parameterType="com.choa.notice.NoticeDTO" >
+  	<delete id="delete" parameterType="NoticeDTO" >
   		delete from notice where num=#{num}
   	</delete>
   
