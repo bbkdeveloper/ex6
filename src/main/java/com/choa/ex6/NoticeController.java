@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,8 +28,13 @@ public class NoticeController {
 	//NoticeList
 	@RequestMapping(value="noticeList", method=RequestMethod.GET)
 	public String noticeList(Model model, ListInfo listInfo)throws Exception{
-		
+		System.out.println("난 컨트롤러");
 		List<BoardDTO> ar = noticeService.boardList(listInfo);
+		System.out.println(ar.get(1000).getTitle());
+		//throw new IndexOutOfBoundsException();
+		//예외 객체타입을 하나를 만들어서 던져준다
+		//try안에 객체를 만들어서 catch에서 받아주는건데 생략이 되어있...
+		
 		model.addAttribute("list", ar);
 		model.addAttribute("board", "notice");
 		
@@ -113,4 +119,6 @@ public class NoticeController {
 		return "redirect:/notice/noticeList";
 		
 	}
+	
+	
 }

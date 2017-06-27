@@ -2,8 +2,43 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+	
+	
+	<!-- 공통 로직 -->
+	<!-- <bean class="com.choa.aspect.CardCheck" id="cardCheck"></bean>
+	
+	<aop:config>
+		<aop:aspect id="cardAspect" ref="cardCheck">
+		
+			aspect는 공통사항이 무엇인지 저장하는것 - card or reserve
+			하나의 단위를 aspect로 묶어준다
+			.. : 하위의 모든 디렉터리
+			*() : 하위의 모든 메서드
+			*(..) : 매개변수가 있던 없던 모든 메서드
+			(..) : 모든 매개변수
+		
+		
+		<aop:pointcut expression="execution(* com.choa.aspect..Transport.*(..))" id="trans"/>
+		<aop:around method="check" pointcut-ref="trans"/>
+		CardCheck안에 있는 메서드중에서 check라는 메서드를 사용할 것
+		</aop:aspect>
+		
+		<aop:aspect id="cardReserve" ref="cardCheck">
+			<aop:pointcut expression="execution(* com.choa.aspect..Trip.*(..))" id="reserve"/>
+			<aop:before method="reservation" pointcut-ref="reserve"/>
+		
+		</aop:aspect>
+	</aop:config> -->
+	
+	
+	
+	
+	
+	
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	
