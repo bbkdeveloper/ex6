@@ -52,6 +52,7 @@
 	<context:component-scan base-package="com.choa.table"/>
 	
 	<!-- @Before이랑 @around같은 애들은 aop에 속하므로 스캔하라고 따로 만들어줘야한다 -->
+	<!-- 객체가 만들어지는 지점이 sevlet-context.xml에 위치하기 때문에 -->
 	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 	
 </beans:beans>

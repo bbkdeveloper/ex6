@@ -3,9 +3,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
-		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 	
 	
 	<!-- 공통 로직 -->
@@ -33,9 +35,6 @@
 		
 		</aop:aspect>
 	</aop:config> -->
-	
-	
-	
 	
 	
 	
@@ -72,6 +71,32 @@
 	<bean class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactoryBean"/>
 	</bean>
+	
+	<!-- 트랜잭션 관리자 -->
+	<bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager" id="transaction">
+		<property name="dataSource" ref="dataSource"></property>
+	</bean>
+	
+	<!-- Annotation을 활성화 시키겟다? servlet에는 자동으로 생성 -->
+	<tx:annotation-driven/>
+	
+	
+	<!-- 공통사항을 언제 어디다가 넣어줄건지 
+	Exception이 발생했을 때, RollBack하겟....
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="*" rollback-for="Exception"/>
+		</tx:attributes>
+	</tx:advice>
+	
+	<aop:config>
+		<aop:pointcut expression="execution(* com.choa.table..TableService.*(..))" id="requiredTx"/>
+		외부에 있는 Adviser을 사용하겠다.
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="requiredTx"/>
+	
+	</aop:config>
+	 -->
+	
 	
 	<!-- 파일업로드에 필요 -->
 	<bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
